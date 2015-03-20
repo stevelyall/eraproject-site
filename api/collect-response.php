@@ -5,16 +5,23 @@ if (!$con) {
 }
 echo 'Connected successfully';
 mysql_select_db(eraprojectdbtest);
+echo "<br>";
+$json = file_get_contents('php://input');
 
+echo "JSON:";
+var_dump($json);
+echo "<br>";
+$obj = json_decode($json);
+echo "decoded:";
+echo $obj->{test};
+$toInsert = mysql_real_escape_string($obj->{test});
 
-$comment = mysql_real_escape_string($_POST["comment"]);
-
-$sql = "INSERT INTO testtable (comments) VALUES ('wasssssssup') ";
+$sql = "INSERT INTO testtable (comments) VALUES ('$toInsert');";
 
 if (!mysql_query($sql, $con)) {
     die('Error: ' . mysql_error());
 } else {
-    echo "test added";
+    echo "<br>test added";
 }
 
 mysql_close($con);
