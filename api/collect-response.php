@@ -1,4 +1,5 @@
 <?php
+// TODO hide db connection details
 $con = mysql_connect('eraprojectca.ipagemysql.com', 'steve', 'Password1');
 if (!$con) {
     die('Could not connect: ' . mysql_error());
