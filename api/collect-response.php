@@ -1,7 +1,7 @@
 <?php
 // TODO hide db connection details
-$con = mysql_connect('eraprojectca.ipagemysql.com', 'ernie', 'Emotivate_88');
-if (!$con) {
+$connection = mysql_connect('eraprojectca.ipagemysql.com', 'ernie', 'Emotivate_88');
+if (!$connection) {
     die('Could not connect: ' . mysql_error());
 }
 echo 'Connected successfully';
@@ -12,7 +12,7 @@ echo "JSON:";
 var_dump($json);
 echo "<br>";
 $obj = json_decode($json);
-// TODO maybe app not sending valid json format. missing quotes? run through lint
+
 $participant_id = mysql_real_escape_string($obj->{participantId});
 echo "The id is:" . $obj->{participantId};
 $response_num = mysql_real_escape_string($obj->{responseNum});
@@ -37,17 +37,32 @@ $q13_response = mysql_real_escape_string($obj->{q13response});
 $q14_response = mysql_real_escape_string($obj->{q14response});
 $q15_response = mysql_real_escape_string($obj->{q15response});
 
-$sql = "INSERT INTO response (participant_id, response_num, start_time, end_time, location, q1_response, q2_response, q3_response, q4_response, q5_response, q6_response, q7_response, q8_response, q9_response, q10_response, q11_response, q12_response, q13_response, q14_response, q15_response)
-        VALUES ('$participant_id', '$response_num', '$start_time', '$end_time', '$location', '$q1_response', '$q2_response', '$q3_response', '$q4_response', '$q5_response', '$q6_response', '$q7_response', '$q8_response', '$q9_response', '$q10_response', '$q11_response', '$q12_response', '$q13_response', '$q14_response', '$q15_response');";
+$age = mysql_real_escape_string($obj->{age});
+$gender = mysql_real_escape_string($obj->{gender});
+$ethnicity = mysql_real_escape_string($obj->{ethnicity});
 
-// TODO zero or blank values are being added??
+$insertResponseQuery = "INSERT INTO response (participant_id, response_num, start_time, end_time, location, q1_response, q2_response, q3_response, q4_response, q5_response, q6_response, q7_response, q8_response, q9_response, q10_response, q11_response, q12_response, q13_response, q14_response, q15_response)
+                                VALUES ('$participant_id', '$response_num', '$start_time', '$end_time', '$location', '$q1_response', '$q2_response', '$q3_response', '$q4_response', '$q5_response', '$q6_response', '$q7_response', '$q8_response', '$q9_response', '$q10_response', '$q11_response', '$q12_response', '$q13_response', '$q14_response', '$q15_response');";
 
-if (!mysql_query($sql, $con)) {
-    die('Error: ' . mysql_error());
-} else {
-    echo "<br>".$sql."<br>test added" . "<br>id:". $participantId . "<br>age:". $age . "<br>gender:". $gender;
+//TODO insert if not exists
+$checkForParticipant = "SELECT participant_id
+                            FROM participant
+                            WHERE participant_id == '$participant_id'";
+
+$insertParticipantQuery = "INSERT INTO participant (participant_id, age, gender, ethnicity)
+                            VALUES ('$participant_id', '$age', '$gender', '$ethnicity');";
+
+function runQuery($Query, $con) {
+    if (!mysql_query($Query, $con)) {
+        die('Error: ' . mysql_error());
+    } else {
+        echo "<br> insert success" . mysql_info();
+    }
 }
 
-mysql_close($con);
+runQuery($insertResponseQuery, $connection);
+runQuery($insertParticipantQuery, $connection);
+
+mysql_close($connection);
 
 ?>
