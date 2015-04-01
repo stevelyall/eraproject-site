@@ -116,7 +116,10 @@
             // close database connection
             mysqli_close($connection);
             ?>
+
+            <a class="btn btn-primary" href="viewresults.php" role="button">Back</a>
         </div>
+
     </content>
 
 </div>
