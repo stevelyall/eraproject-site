@@ -54,13 +54,10 @@
                 // connect to the database
                 $connection = mysqli_connect('eraprojectca.ipagemysql.com', 'ernie', 'Emotivate_88', 'eraprojectdb');
                 if (mysqli_connect_errno()) {
-                    die('Could not connect: ' . mysqli_connect_error() . mysqli_connect_errno());
+                    die('Could not connect: ' . mysqli_connect_error() . ' error number: ' . mysqli_connect_errno());
                 }
                 echo 'Connected successfully <br><br>';
-            ?>
 
-
-            <?php
             //perform query
              $query = "SELECT * FROM response ORDER BY participant_id";
              $result = mysqli_query($connection, $query);
@@ -81,7 +78,7 @@
             echo "<th>Start Time</th>";
             echo "<th>End Time</th>";
             echo "<th>Location</th>";
-            for ($i = 1; $i<16; $i++) {
+            for ($i = 1; $i<19; $i++) {
                 echo "<th>Q$i</th>";
 
             }
@@ -95,7 +92,7 @@
                     echo "<th>" . $row["start_time"] . "</th>";
                     echo "<th>" . $row["end_time"] . "</th>";
                     echo "<th>" . $row["location"] . "</th>";
-                    for ($i = 1; $i<16; $i++) {
+                    for ($i = 1; $i<19; $i++) {
                         echo "<th>" . $row["q" . $i . "_response"] . "</th>";
                     }
 
