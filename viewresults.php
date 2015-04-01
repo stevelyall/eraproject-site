@@ -62,7 +62,7 @@
 
             <?php
             //perform query
-             $query = "SELECT * FROM response";
+             $query = "SELECT * FROM response ORDER BY participant_id";
              $result = mysqli_query($connection, $query);
 
             if (!$result) {
@@ -74,27 +74,42 @@
 
             <?php
             // use returned data
-            echo "<table>";
+            echo "<table class='table-striped table-hover'>";
+            echo "<tr>";
+            echo "<th>Participant ID</th>";
+            echo "<th>Response Number</th>";
+            echo "<th>Start Time</th>";
+            echo "<th>End Time</th>";
+            echo "<th>Location</th>";
+            for ($i = 1; $i<16; $i++) {
+                echo "<th>Q$i</th>";
+
+            }
+
+            echo "</tr>";
                 while ($row = mysqli_fetch_assoc($result)) {
                     // output each row
-                    var_dump($row);
-                    echo "<hr>";
+                    echo "<tr>";
+                    echo "<th>" . $row["participant_id"] . "</th>";
+                    echo "<th>" . $row["response_num"] . "</th>";
+                    echo "<th>" . $row["start_time"] . "</th>";
+                    echo "<th>" . $row["end_time"] . "</th>";
+                    echo "<th>" . $row["location"] . "</th>";
+                    for ($i = 1; $i<16; $i++) {
+                        echo "<th>" . $row["q" . $i . "_response"] . "</th>";
+                    }
+
+                    echo "</tr>";
                 }
             echo "</table>";
             ?>
 
-            // release returned data
             <?php
+            // release returned data
             mysqli_free_result($result);
-            ?>
-
             // close database connection
             mysqli_close($connection);
             ?>
-
-            <table>
-
-            </table>
         </div>
     </content>
 
