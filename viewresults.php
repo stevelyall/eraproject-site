@@ -87,15 +87,14 @@
                 while ($row = mysqli_fetch_assoc($result)) {
                     // output each row
                     echo "<tr>";
-                    echo "<th>" . $row["participant_id"] . "</th>";
-                    echo "<th>" . $row["response_num"] . "</th>";
-                    echo "<th>" . $row["start_time"] . "</th>";
-                    echo "<th>" . $row["end_time"] . "</th>";
-                    echo "<th>" . $row["location"] . "</th>";
+                    echo "<td>" . $row["participant_id"] . "</td>";
+                    echo "<td>" . $row["response_num"] . "</td>";
+                    echo "<td>" . $row["start_time"] . "</td>";
+                    echo "<td>" . $row["end_time"] . "</td>";
+                    echo "<td>" . $row["location"] . "</td>";
                     for ($i = 1; $i<19; $i++) {
-                        echo "<th>" . $row["q" . $i . "_response"] . "</th>";
+                        echo "<td>" . $row["q" . $i . "_response"] . "</td>";
                     }
-
                     echo "</tr>";
                 }
             echo "</table>";
