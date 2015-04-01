@@ -56,7 +56,6 @@
                 if (mysqli_connect_errno()) {
                     die('Could not connect: ' . mysqli_connect_error() . ' error number: ' . mysqli_connect_errno());
                 }
-                echo 'Connected successfully <br><br>';
 
             //perform query
              $query = "SELECT * FROM response ORDER BY participant_id";
@@ -65,29 +64,29 @@
             if (!$result) {
                 die("db query failed");
             }
-
             ?>
 
+            <table class='table-striped table-hover'>
+                <tr>
+                    <th>Participant ID</th>
+                    <th>Response Number</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Location</th>
 
-            <?php
-            // use returned data
-            echo "<table class='table-striped table-hover'>";
-            echo "<tr>";
-            echo "<th>Participant ID</th>";
-            echo "<th>Response Number</th>";
-            echo "<th>Start Time</th>";
-            echo "<th>End Time</th>";
-            echo "<th>Location</th>";
-            for ($i = 1; $i<19; $i++) {
-                echo "<th>Q$i</th>";
+                    <?php
+                    for ($i = 1; $i < 19; $i++) {
+                        echo "<th>Q$i</th>";
 
-            }
+                    }
+                    ?>
+                </tr>
 
-            echo "</tr>";
+                <?php
                 while ($row = mysqli_fetch_assoc($result)) {
                     // output each row
                     echo "<tr>";
-                    echo "<td>" . $row["participant_id"] . "</td>";
+                    echo "<td>" . "<a href='participantDetails.php?" . $row["participant_id"] . "'>" . $row["participant_id"] . "</td>";
                     echo "<td>" . $row["response_num"] . "</td>";
                     echo "<td>" . $row["start_time"] . "</td>";
                     echo "<td>" . $row["end_time"] . "</td>";
