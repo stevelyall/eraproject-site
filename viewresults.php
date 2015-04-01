@@ -20,49 +20,81 @@
 </head>
 <body>
 <div class="container">
-<!--    <!-- Static navbar -->-->
-<!--    <nav class="navbar navbar-default">-->
-<!--        <div class="container-fluid">-->
-<!--            <div class="navbar-header">-->
-<!--                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">-->
-<!--                    <span class="sr-only">Toggle navigation</span>-->
-<!--                    <span class="icon-bar"></span>-->
-<!--                    <span class="icon-bar"></span>-->
-<!--                    <span class="icon-bar"></span>-->
-<!--                </button>-->
-<!--                <a class="navbar-brand" href="#">ERA Project</a>-->
-<!--            </div>-->
-<!--            <div id="navbar" class="navbar-collapse collapse">-->
-<!--                <ul class="nav navbar-nav">-->
-<!--                    <li><a href="/index.html">Home</a></li>-->
-<!--                    <li><a href="/privacyPolicy.html">Privacy Policy</a></li>-->
-<!--                    <li><a href="https://groups.google.com/forum/#!forum/eraprojecttesters">Join the Beta</a> </li>-->
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">ERA Project</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+
+<!--                TODO what does nav bar look like-->
+                <ul class="nav navbar-nav">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/privacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="https://groups.google.com/forum/#!forum/eraprojecttesters">Join the Beta</a> </li>
 <!--                    <li><a href="/login.php">Researcher Login</a> </li>-->
-<!---->
-<!--                    <li><a href="http://tru.ca">Thompson Rivers University</a></li>-->
-<!--                    <li><a href="mailto:myeraproject@gmail.com">Contact</a></li>-->
-<!--                </ul>-->
-<!--            </div><!--/.nav-collapse -->-->
-<!--        </div><!--/.container-fluid -->-->
-<!--    </nav>-->
+
+                    <li><a href="http://tru.ca">Thompson Rivers University</a></li>
+                    <li><a href="mailto:myeraproject@gmail.com">Contact</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
 
     <content>
         <div class="container-fluid">
-        <?php
-            // connect to the database
-            $link = mysql_connect('eraprojectca.ipagemysql.com', 'ernie', 'Emotivate_88');
-            if (!$link) {
-                die('Could not connect: ' . mysql_error());
+            <?php
+                // connect to the database
+                $connection = mysqli_connect('eraprojectca.ipagemysql.com', 'ernie', 'Emotivate_88', 'eraprojectdb');
+                if (mysqli_connect_errno()) {
+                    die('Could not connect: ' . mysqli_connect_error() . mysqli_connect_errno());
+                }
+                echo 'Connected successfully <br><br>';
+            ?>
+
+
+            <?php
+            //perform query
+             $query = "SELECT * FROM response";
+             $result = mysqli_query($connection, $query);
+
+            if (!$result) {
+                die("db query failed");
             }
-            echo 'Connected successfully';
-            mysql_select_db(eraprojectdb);
 
-            echo "<table>
-                <tr><th>Test</th></tr>
-                <tr><td>test</td></tr>
-                  </table>"
+            ?>
 
-        ?>
+
+            <?php
+            // use returned data
+            echo "<table>";
+                while ($row = mysqli_fetch_assoc($result)) {
+                    // output each row
+                    var_dump($row);
+                    echo "<hr>";
+                }
+            echo "</table>";
+            ?>
+
+            // release returned data
+            <?php
+            mysqli_free_result($result);
+            ?>
+
+            // close database connection
+            mysqli_close($connection);
+            ?>
+
+            <table>
+
+            </table>
         </div>
     </content>
 
