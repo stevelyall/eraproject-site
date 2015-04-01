@@ -49,7 +49,7 @@ $insertParticipantQuery = "INSERT IGNORE INTO participant (participant_id, age, 
 
 // insert the responses in the response table
 $insertResponseQuery = "INSERT INTO response (participant_id, response_num, start_time, end_time, location, q1_response, q2_response, q3_response, q4_response, q5_response, q6_response, q7_response, q8_response, q9_response, q10_response, q11_response, q12_response, q13_response, q14_response, q15_response, q16_response, q17_response, q18_response)
-                                VALUES ('$participant_id', '$response_num', '$start_time', '$end_time', '$location', '$q1_response', '$q2_response', '$q3_response', '$q4_response', '$q5_response', '$q6_response', '$q7_response', '$q8_response', '$q9_response', '$q10_response', '$q11_response', '$q12_response', '$q13_response', '$q14_response', '$q15_response', '$q16_response', '$q17_response', '$q18_response');";
+                        VALUES ('$participant_id', '$response_num', '$start_time', '$end_time', '$location', '$q1_response', '$q2_response', '$q3_response', '$q4_response', '$q5_response', '$q6_response', '$q7_response', '$q8_response', '$q9_response', '$q10_response', '$q11_response', '$q12_response', '$q13_response', '$q14_response', '$q15_response', '$q16_response', '$q17_response', '$q18_response');";
 
 
 
