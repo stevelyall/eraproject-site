@@ -21,13 +21,13 @@
 <body>
 <div class="container">
     <?php
-    include("header.php");
+    require("navigation.php");
     ?>
 
     <content>
         <?php
-        require("db_connect.php");
-        $connection = db_connect();
+        require("functions.php");
+        $connection = connectToDb();
 
         $id = $_GET['participant'];
 

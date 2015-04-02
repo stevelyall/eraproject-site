@@ -21,13 +21,13 @@
 <body>
 <div class="container">
     <?php
-    include("header.php");
+    require("navigation.php");
     ?>
 
     <content>
         <div class="container-fluid">
             <?php
-            require("db_connect.php");
+            require("functions.php");
             $connection = connectToDb();
 
             //perform query
