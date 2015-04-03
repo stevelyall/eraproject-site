@@ -21,6 +21,8 @@ if (isset($_POST['submit'])) {
         echo "check for duplicate user query failed";
     }
 
+    mysqli_free_result($result);
+
     // user with that name exists
     if (mysqli_num_rows($result) > 0) {
         $msg = "Can't add user {$username}, the user already exists.";
@@ -29,20 +31,22 @@ if (isset($_POST['submit'])) {
         $query = "INSERT INTO users (username, hashed_password)
                 VALUES ('$usr', '$pw'); ";
         $result = mysqli_query($connection, $query);
+        mysqli_free_result($result);
+        mysqli_close($connection);
 
         if (!$result) {
             die("Adding user failed");
         }
 
         $msg = "User {$username} added.";
+
+
     }
 } else {
     // form was not submitted (GET request)
     $msg = "Add User";
 }
 
-mysqli_free_result($result);
-mysqli_close($connection);
 ?>
 <!DOCTYPE html>
 <html lang="en">

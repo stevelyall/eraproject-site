@@ -1,10 +1,14 @@
+<?php
+$user = $_GET['user'];
+echo "<pre> User $user </pre>";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ERA | Manage Users</title>
+    <title>ERA | Delete User <?php echo $user ?></title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,26 +43,14 @@
             }
             ?>
 
-            <table class='table-striped table-hover'>
-                <tr>
-                    <th>Username</th>
-                    <th>Password</th>
-                    <th>Options</th>
-                </tr>
+            <h2>Delete user <?php echo $user ?></h2>
 
-                <?php
-                while ($row = mysqli_fetch_assoc($result)) {
-                    // output each row
-                    echo "<tr>";
-                    echo "<td>" . $row["username"] . "</td>";
-                    echo "<td>" . $row["hashed_password"] . "</td>";
-                    echo "<td>
-                            <a href='delete_user.php?user={$row["username"]}'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>
+            <p>Are you sure you want to delete this user?</p>
 
-                        </td>";
-                }
-                ?>
-            </table>
+            <button class="btn btn-primary" type="button" name="no">No</button>
+            <button class="btn btn-warning" type="button" name="yes">Yes</button>
+
+
             <?php
             // release returned data
             mysqli_free_result($result);

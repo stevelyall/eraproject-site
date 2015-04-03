@@ -39,6 +39,7 @@
             }
             ?>
 
+            <a href="new_user.php"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add User</a>
             <table class='table-striped table-hover'>
                 <tr>
                     <th>Username</th>
@@ -54,7 +55,7 @@
                     echo "<td>" . $row["hashed_password"] . "</td>";
                     echo "<td>
                             <a href='delete_user.php?user={$row["username"]}'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>
-
+                            <a href='edit_user.php?user={$row["username"]}'> <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> </a>
                         </td>";
                 }
                 ?>
