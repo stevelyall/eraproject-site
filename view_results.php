@@ -59,7 +59,7 @@
                 while ($row = mysqli_fetch_assoc($result)) {
                     // output each row
                     echo "<tr>";
-                    echo "<td>" . "<a href='participantDetails.php?participant=" . $row["participant_id"] . "'>" . $row["participant_id"] . "</td>";
+                    echo "<td>" . "<a href='participant_details.php?participant=" . $row["participant_id"] . "'>" . $row["participant_id"] . "</td>";
                     echo "<td>" . $row["response_num"] . "</td>";
                     echo "<td>" . $row["start_time"] . "</td>";
                     echo "<td>" . $row["end_time"] . "</td>";

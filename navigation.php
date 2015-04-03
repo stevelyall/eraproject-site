@@ -13,7 +13,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/index.php">Home</a></li>
-                <li><a href="/privacyPolicy.php">Privacy Policy</a></li>
+                <li><a href="/privacy_policy.php">Privacy Policy</a></li>
                 <li><a href="https://groups.google.com/forum/#!forum/eraprojecttesters">Join the Beta</a></li>
                 <li><a href="/login.php">Researcher Login</a></li>
 

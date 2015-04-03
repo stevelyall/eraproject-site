@@ -2,13 +2,23 @@
 
 function connectToDb()
 {
+    //production
+//    $host = "eraprojectca.ipagemysql.com";
+//    $user = "ernie";
+//    $pass = "Emotivate_88";
+//    $dbname = "eraprojectdb";
+
+    // dev
+    $host = "localhost";
+    $user = "root";
+    $pass = "mysql";
+    $dbname = "eradevdb";
+
     // connect to the database
-    $connection = mysqli_connect('eraprojectca.ipagemysql.com', 'ernie', 'Emotivate_88', 'eraprojectdb');
-    //$connection = mysqli_connect('imacelery.ddns.net', 'dbbox', 'craptop', 'test');
+    $connection = mysqli_connect($host, $user, $pass, $dbname);
     if (mysqli_connect_errno()) {
         die('Could not connect: ' . mysqli_connect_error() . ' error number: ' . mysqli_connect_errno());
     }
-    echo "connected";
     return $connection;
 }
 

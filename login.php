@@ -1,3 +1,14 @@
+<?php
+if (isset($_POST['submit'])) {
+    // form was submitted
+    $username = $_POST['inputUsername'];
+    $password = $_POST['inputPassword'];
+    $msg = "Trying to login in as {$username}";
+} else {
+    // form was not submitted (GET request)
+    $msg = "Please Log In";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,18 +36,20 @@
     ?>
 
    <content>
-       <form class="form-signin">
-           <h2 class="form-signin-heading">Please sign in</h2>
-           <label for="inputEmail" class="sr-only">Email address</label>
-           <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+       <!-- login form -->
+
+       <form class="form-signin" action="login.php" method="post">
+           <h2 class="form-signin-heading"> <?php echo $msg; ?> </h2>
+           <label for="inputUsername" class="sr-only">Username</label>
+           <input type="text" name="inputUsername" class="form-control" placeholder="Username" required autofocus>
            <label for="inputPassword" class="sr-only">Password</label>
-           <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+           <input type="password" name="inputPassword" class="form-control" placeholder="Password" required>
            <div class="checkbox">
                <label>
                    <input type="checkbox" value="remember-me"> Remember me
                </label>
            </div>
-           <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+           <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Sign in</button>
        </form>
 
    </content>

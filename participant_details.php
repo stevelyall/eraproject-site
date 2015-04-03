@@ -87,7 +87,7 @@
             mysqli_close($connection);
             ?>
 
-            <a class="btn btn-primary" href="viewresults.php" role="button">Back</a>
+            <a class="btn btn-primary" href="view_results.php" role="button">Back</a>
         </div>
 
     </content>
