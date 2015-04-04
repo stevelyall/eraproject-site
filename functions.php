@@ -1,5 +1,10 @@
 <?php
 
+function redirectTo($page)
+{
+    header("Location: " . $page);
+}
+
 function connectToDb()
 {
     //production
@@ -33,13 +38,18 @@ function findAllUsers()
 
 function findUserById($username)
 {
+
     $connection = connectToDb();
 
     $userid = mysqli_real_escape_string($connection, $username);
 
-    $query = "SELECT * FROM users WHERE username = {$userid} LIMIT 1";
+
+    $query = "SELECT * FROM users WHERE username = '{$userid}' LIMIT 1";
 
     $result = mysqli_query($connection, $query);
+    if (!$result) {
+        echo "findUserById {$username} failed";
+    }
 
     if ($user = mysqli_fetch_assoc($result)) {
         return $user;
@@ -48,4 +58,35 @@ function findUserById($username)
     }
 }
 
+function addUser($username, $password)
+{
+    $connection = connectToDb();
+    $usr = mysqli_real_escape_string($connection, $username);
+    $pw = mysqli_real_escape_string($connection, $password);
+
+    // add new user
+    $query = "INSERT INTO users (username, hashed_password)
+                VALUES ('$usr', '$pw'); ";
+    $result = mysqli_query($connection, $query);
+
+    if (!$result) {
+        die("Adding user failed");
+    }
+    mysqli_close($connection);
+}
+
+function deleteUser($user)
+{
+    $connection = connectToDb();
+    $username = mysqli_real_escape_string($connection, $user);
+
+    $query = "DELETE FROM users WHERE username = '$username';";
+    $result = mysqli_query($connection, $query);
+
+    if (!$result) {
+        die("Deleting user failed" . mysqli_error($connection));
+    }
+
+    mysqli_close($connection);
+}
 ?>

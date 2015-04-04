@@ -30,13 +30,7 @@
             require("functions.php");
             $connection = connectToDb();
 
-            //perform query
-            $query = "SELECT * FROM users ORDER BY id";
-            $result = mysqli_query($connection, $query);
-
-            if (!$result) {
-                die("db query failed");
-            }
+            $result = findAllUsers();
             ?>
 
             <a href="new_user.php"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add User</a>
@@ -48,17 +42,18 @@
                 </tr>
 
                 <?php
-                while ($row = mysqli_fetch_assoc($result)) {
-                    // output each row
-                    echo "<tr>";
-                    echo "<td>" . $row["username"] . "</td>";
-                    echo "<td>" . $row["hashed_password"] . "</td>";
-                    echo "<td>
-                            <a href='delete_user.php?user={$row["username"]}'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>
-                            <a href='edit_user.php?user={$row["username"]}'> <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> </a>
-                        </td>";
-                }
-                ?>
+                while ($row = mysqli_fetch_assoc($result)) { ?>
+                <!-- output each row-->
+                <tr>
+                    <td><?php echo htmlentities($row['username']) ?></td>
+                    <td><?php echo htmlentities($row["hashed_password"]) ?></td>
+                    <td>
+                        <a href='delete_user.php?user=<?php echo urlencode($row["username"]) ?>'> <span
+                                class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>
+                        <a href='edit_user.php?user=<?php echo urlencode($row["username"]) ?>'> <span
+                                class='glyphicon glyphicon-pencil' aria-hidden='true'></span> </a>
+                    </td>
+                    <?php } ?>
             </table>
             <?php
             // release returned data

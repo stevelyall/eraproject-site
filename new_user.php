@@ -1,46 +1,20 @@
 <?php
 require("functions.php");
+
 if (isset($_POST['submit'])) {
     // form was submitted
     $username = $_POST['inputUsername'];
     $password = $_POST['inputPassword'];
 
-    $connection = connectToDb();
-    $usr = mysqli_real_escape_string($connection, $username);
-    $pw = mysqli_real_escape_string($connection, $password);
 
     // check for duplicate user
-    $query = "SELECT * FROM users WHERE username = '$usr';";
-    $result = mysqli_query($connection, $query);
-    echo "<pre>";
-    var_dump($query);
-    var_dump($result);;
-    echo "</pre>";
-
-    if (!$result) {
-        echo "check for duplicate user query failed";
-    }
-
-    mysqli_free_result($result);
-
     // user with that name exists
-    if (mysqli_num_rows($result) > 0) {
+    if (findUserById($username) != null) {
         $msg = "Can't add user {$username}, the user already exists.";
     } else {
-        // add new user
-        $query = "INSERT INTO users (username, hashed_password)
-                VALUES ('$usr', '$pw'); ";
-        $result = mysqli_query($connection, $query);
-        mysqli_free_result($result);
-        mysqli_close($connection);
-
-        if (!$result) {
-            die("Adding user failed");
-        }
-
+        // add user
+        addUser($username, $password);
         $msg = "User {$username} added.";
-
-
     }
 } else {
     // form was not submitted (GET request)
