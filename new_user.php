@@ -57,9 +57,10 @@ if (isset($_POST['submit'])) {
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" name="inputPassword" class="form-control" placeholder="Password" required>
             <br>
-            <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Add User</button>
+            <button class="btn btn-primary" type="submit" name="submit">Add User</button>
         </form>
-
+        <br>
+        <a href='manage_users.php'><button class="btn btn-primary">Done Adding Users</button></a>
     </content>
 
 </div>

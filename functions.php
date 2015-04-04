@@ -13,7 +13,7 @@ function connectToDb()
 //    $pass = "Emotivate_88";
 //    $dbname = "eraprojectdb";
 
-    // dev
+//    // dev
     $host = "localhost";
     $user = "root";
     $pass = "mysql";
@@ -65,7 +65,7 @@ function addUser($username, $password)
     $pw = mysqli_real_escape_string($connection, $password);
 
     // add new user
-    $query = "INSERT INTO users (username, hashed_password)
+    $query = "INSERT INTO users (username, password)
                 VALUES ('$usr', '$pw'); ";
     $result = mysqli_query($connection, $query);
 
@@ -89,4 +89,29 @@ function deleteUser($user)
 
     mysqli_close($connection);
 }
+
+function modifyUser($user, $newName, $newPass)
+{
+    var_dump($user);
+    $connection = connectToDb();
+    $user = mysqli_real_escape_string($connection, $user);
+    $newName = mysqli_real_escape_string($connection, $newName);
+    $newPass = mysqli_real_escape_string($connection, $newPass);
+
+    echo "<pre>";
+    var_dump($user);
+    var_dump($newName);
+    var_dump($newPass);
+    echo "</pre>";
+
+    $query = "UPDATE users SET username = '$newName', password = '$newPass' WHERE username = '$user';";
+    $result = mysqli_query($connection, $query);
+
+    if (!$result) {
+        die("Updating user failed" . mysqli_error($connection));
+    }
+
+    mysqli_close($connection);
+}
+
 ?>

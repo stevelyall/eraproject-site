@@ -1,11 +1,16 @@
 <?php
+
+
 if (isset($_POST['submit'])) {
     // form was submitted
     $username = $_POST['inputUsername'];
     $password = $_POST['inputPassword'];
     $msg = "Trying to login in as {$username}";
+
+
 } else {
     // form was not submitted (GET request)
+
     $msg = "Please Log In";
 }
 ?>
@@ -36,6 +41,7 @@ if (isset($_POST['submit'])) {
     ?>
 
    <content>
+
        <!-- login form -->
 
        <form class="form-signin" action="login.php" method="post">
