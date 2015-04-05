@@ -1,5 +1,11 @@
 <?php
+ob_start();
 require("functions.php");
+
+// viewable only if logged in
+if (!isset($_SESSION['loggedInUser'])) {
+    redirectTo("index.php");
+}
 
 $user = $_GET['user'];
 var_dump($user);
@@ -16,7 +22,7 @@ if (isset($_POST['submit'])) {
     // form was not submitted (GET request)
     $msg = "Edit User " . $user;
 }
-
+ob_flush();
 ?>
 <!DOCTYPE html>
 <html lang="en">

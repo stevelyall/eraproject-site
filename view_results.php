@@ -1,3 +1,12 @@
+<?php
+    ob_start();
+    require("functions.php");
+    if (!isset($_SESSION['loggedInUser'])) {
+        redirectTo("index.php");
+    }
+    ob_flush();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

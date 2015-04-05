@@ -1,3 +1,15 @@
+<?php
+ob_start();
+require("functions.php");
+
+// viewable only if logged in
+if (!isset($_SESSION['loggedInUser'])) {
+    redirectTo("index.php");
+}
+
+ob_flush();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

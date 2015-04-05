@@ -36,7 +36,7 @@ function findAllUsers()
     return $users;
 }
 
-function findUserById($username)
+function findUser($username)
 {
 
     $connection = connectToDb();

@@ -1,5 +1,11 @@
 <?php
+ob_start();
 require("functions.php");
+
+// viewable only if logged in
+if (!isset($_SESSION['loggedInUser'])) {
+     redirectTo("index.php");
+}
 
 if (isset($_POST['submit'])) {
     // form was submitted
@@ -9,7 +15,7 @@ if (isset($_POST['submit'])) {
 
     // check for duplicate user
     // user with that name exists
-    if (findUserById($username) != null) {
+    if (findUser($username) != null) {
         $msg = "Can't add user {$username}, the user already exists.";
     } else {
         // add user
@@ -21,6 +27,7 @@ if (isset($_POST['submit'])) {
     $msg = "Add User";
 }
 
+ob_flush();
 ?>
 <!DOCTYPE html>
 <html lang="en">

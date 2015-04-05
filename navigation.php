@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    // user is logged in
+    if (isset($_SESSION['loggedInUser'])) {
+        $logInOut = "<li><a href='/log_out.php'>Log Out</a></li>";
+    } else {
+        $logInOut = "<li><a href='/login.php'>Researcher Login</a></li>";
+    }
+?>
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -14,9 +24,11 @@
             <ul class="nav navbar-nav">
                 <li><a href="/index.php">Home</a></li>
                 <li><a href="/privacy_policy.php">Privacy Policy</a></li>
+                <?php
+                // TODO if logged in view results link
+                ?>
                 <li><a href="https://groups.google.com/forum/#!forum/eraprojecttesters">Join the Beta</a></li>
-                <li><a href="/login.php">Researcher Login</a></li>
-
+                <?php echo $logInOut ?>
                 <li><a href="http://tru.ca">Thompson Rivers University</a></li>
                 <li><a href="mailto:myeraproject@gmail.com">Contact</a></li>
             </ul>
