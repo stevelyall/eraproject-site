@@ -38,6 +38,8 @@
 
     <content>
         <div class="container-fluid">
+            <h2>Responses</h2>
+            <br>
             <?php
             $connection = connectToDb();
 

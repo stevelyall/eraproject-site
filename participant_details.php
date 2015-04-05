@@ -99,7 +99,7 @@ ob_flush();
             mysqli_close($connection);
             ?>
 
-            <a class="btn btn-primary" href="view_results.php" role="button">Back</a>
+            <a class="btn btn-primary" href="javascript:history.go(-1)" role="button">Back</a>
         </div>
 
     </content>

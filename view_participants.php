@@ -2,7 +2,7 @@
 ob_start();
 require_once("functions.php");
 
-// viewable only if logged in
+// viewable only if user is logged in
 session_start();
 if (!isset($_SESSION['loggedInUser'])) {
     redirectTo("index.php");
@@ -16,7 +16,7 @@ ob_flush();
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ERA | Manage Users</title>
+    <title>ERA | View Participants</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -38,51 +38,51 @@ ob_flush();
 
     <content>
         <div class="container-fluid">
-
-            <h2>Manage Users</h2>
+            <h2>Participants</h2>
             <br>
-
             <?php
             $connection = connectToDb();
 
-            $result = findAllUsers();
+            //perform query
+            $query = "SELECT * FROM participant ORDER BY participant_num";
+            $result = mysqli_query($connection, $query);
+
+            if (!$result) {
+                die("db query failed");
+            }
             ?>
 
             <table class='table-striped table-hover'>
                 <tr>
-                    <th>Username</th>
-                    <th>Password</th>
-                    <th>Options</th>
+                    <th>Participant ID</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Ethnicity</th>
                 </tr>
 
                 <?php
-                while ($row = mysqli_fetch_assoc($result)) { ?>
-                <!-- output each row-->
-                <tr>
-                    <td><?php echo htmlentities($row['username']) ?></td>
-                    <td><?php echo htmlentities($row["hashed_password"]) ?></td>
-                    <td>
-                        <a href='delete_user.php?user=<?php echo urlencode($row["username"]) ?>'> <span
-                                class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>
-                        <a href='edit_user.php?user=<?php echo urlencode($row["username"]) ?>'> <span
-                                class='glyphicon glyphicon-pencil' aria-hidden='true'></span> </a>
-                    </td>
-                    <?php } ?>
-            </table>
-            <br>
-            <a href="new_user.php"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add User</a>
+                while ($row = mysqli_fetch_assoc($result)) {
+                    // output each row
+                    echo "<tr>";
+                    echo "<td>" . "<a href='participant_details.php?participant=" . $row["participant_id"] . "'>" . $row["participant_id"] . "</td>";
+                    echo "<td>" . $row["age"] . "</td>";
+                    echo "<td>" . $row["gender"] . "</td>";
+                    echo "<td>" . $row["ethnicity"] . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+                ?>
 
-            <?php
-            // release returned data
-            mysqli_free_result($result);
-            // close database connection
-            mysqli_close($connection);
-            ?>
+                <?php
+                // release returned data
+                mysqli_free_result($result);
+                // close database connection
+                mysqli_close($connection);
+                ?>
         </div>
     </content>
 
-</div>
-<!-- /container -->
+</div> <!-- /container -->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

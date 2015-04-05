@@ -28,7 +28,8 @@
 
                 <?php
                 if ($loggedIn) {
-                    echo "<li><a href='view_results.php'> View Results</a></li>";
+                    echo "<li><a href='view_responses.php'> Responses</a></li>";
+                    echo "<li><a href='view_participants.php'> Participants</a></li>";
                     echo "<li><a href='manage_users.php'> Manage Users </a></li>";
                 }
                 ?>

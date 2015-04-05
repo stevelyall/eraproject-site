@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
         if ($logged_in) {
             session_start();
             $_SESSION['loggedInUser'] = $found_user['username'];
-            redirectTo("view_results.php");
+            redirectTo("view_responses.php");
         }
         else {
 //            echo "incorrect pass";
