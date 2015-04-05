@@ -2,14 +2,16 @@
 ob_start();
 require("functions.php");
 
+// form was submitted
 if (isset($_POST['submit'])) {
-    // form was submitted
+
     $username = $_POST['inputUsername'];
     $password = $_POST['inputPassword'];
     // TODO VALDATIONS
+
     // find user in db
     $found_user = findUser($username);
-
+    //echo "<pre> $username <br> $found_user <br> var_dump($found_user)</pre>";
     if ($found_user != null) {
         // password matches
         $logged_in = ($found_user['password'] == $password) ? true : false;
@@ -18,16 +20,19 @@ if (isset($_POST['submit'])) {
             $_SESSION['loggedInUser'] = $found_user['username'];
             redirectTo("view_results.php");
         }
-
+        else {
+//            echo "incorrect pass";
+            $msg = "Incorrect Username/Password";
+        }
     }
     //no user or incorrect password
     else {
+//        echo "incorrect user";
         $msg = "Incorrect Username/Password";
     }
-
-} else {
-    // form was not submitted (GET request)
-
+}
+// form was not submitted (GET request)
+else {
     $msg = "Please Log In";
 }
 ob_flush();
@@ -65,14 +70,10 @@ ob_flush();
        <form class="form-signin" action="login.php" method="post">
            <h2 class="form-signin-heading"> <?php echo $msg ?> </h2>
            <label for="inputUsername" class="sr-only">Username</label>
-           <input type="text" name="inputUsername" class="form-control" placeholder="Username" value="<?php echo htmlentities($username)?>"required autofocus>
+           <input type="text" name="inputUsername" class="form-control" placeholder="Username" value="<?php if (isset($username)) echo htmlentities($username)?>" required autofocus>
            <label for="inputPassword" class="sr-only">Password</label>
            <input type="password" name="inputPassword" class="form-control" placeholder="Password" required>
-           <div class="checkbox">
-               <label>
-                   <input type="checkbox" value="remember-me"> Remember me
-               </label>
-           </div>
+           <br>
            <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Sign in</button>
        </form>
 

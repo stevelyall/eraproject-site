@@ -1,6 +1,9 @@
 <?php
     ob_start();
-    require("functions.php");
+    require_once("functions.php");
+
+    // viewable only if user is logged in
+    session_start();
     if (!isset($_SESSION['loggedInUser'])) {
         redirectTo("index.php");
     }
@@ -36,7 +39,6 @@
     <content>
         <div class="container-fluid">
             <?php
-            require("functions.php");
             $connection = connectToDb();
 
             //perform query

@@ -1,8 +1,9 @@
 <?php
 ob_start();
-require("functions.php");
+require_once("functions.php");
 
 // viewable only if logged in
+session_start();
 if (!isset($_SESSION['loggedInUser'])) {
     redirectTo("index.php");
 }
@@ -38,7 +39,6 @@ ob_flush();
 
     <content>
         <?php
-        require("functions.php");
         $connection = connectToDb();
 
         $id = $_GET['participant'];

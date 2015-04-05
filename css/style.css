@@ -5,3 +5,6 @@ th {
 td {
     padding: 5px;
 }
+.navbar-default .navbar-text {
+    color: #ffffff;
+}

@@ -1,7 +1,8 @@
 <?php
-    session_start();
     // user is logged in
+    session_start();
     if (isset($_SESSION['loggedInUser'])) {
+        $loggedIn = true;
         $logInOut = "<li><a href='/log_out.php'>Log Out</a></li>";
     } else {
         $logInOut = "<li><a href='/login.php'>Researcher Login</a></li>";
@@ -23,14 +24,23 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/index.php">Home</a></li>
-                <li><a href="/privacy_policy.php">Privacy Policy</a></li>
-                <?php
-                // TODO if logged in view results link
-                ?>
                 <li><a href="https://groups.google.com/forum/#!forum/eraprojecttesters">Join the Beta</a></li>
-                <?php echo $logInOut ?>
-                <li><a href="http://tru.ca">Thompson Rivers University</a></li>
+
+                <?php
+                if ($loggedIn) {
+                    echo "<li><a href='view_results.php'> View Results</a></li>";
+                    echo "<li><a href='manage_users.php'> Manage Users </a></li>";
+                }
+                ?>
+                <li><a href="/privacy_policy.php">Privacy Policy</a></li>
                 <li><a href="mailto:myeraproject@gmail.com">Contact</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <?php if ($loggedIn) {
+                    echo "<p class='navbar-text'>Signed in as {$_SESSION['loggedInUser']}</p>";
+                }
+                echo $logInOut ?>
             </ul>
         </div>
         <!--/.nav-collapse -->

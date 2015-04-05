@@ -1,6 +1,6 @@
 <?php
 ob_start();
-require("functions.php");
+require_once("functions.php");
 
 session_start();
 // empty session
@@ -15,6 +15,6 @@ if (isset($_COOKIE[session_name()])) {
 session_destroy();
 
 redirectTo("index.php");
-
+// TODO check logging out correctly?
 
 ?>
