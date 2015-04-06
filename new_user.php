@@ -2,10 +2,12 @@
 ob_start();
 require_once("functions.php");
 
-// viewable only if logged in
+//only accessible if logged in as admin
 session_start();
 if (!isset($_SESSION['loggedInUser'])) {
-     redirectTo("index.php");
+    redirectTo("index.php");
+} else if ($_SESSION['loggedInUser'] != 'admin') {
+    redirectTo("view_responses.php");
 }
 
 if (isset($_POST['submit'])) {

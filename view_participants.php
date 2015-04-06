@@ -18,7 +18,7 @@ ob_flush();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ERA | View Participants</title>
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap -->x
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom Styles -->
     <link href="css/style.css" rel="stylesheet">

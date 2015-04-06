@@ -30,7 +30,11 @@
                 if ($loggedIn) {
                     echo "<li><a href='view_responses.php'> Responses</a></li>";
                     echo "<li><a href='view_participants.php'> Participants</a></li>";
-                    echo "<li><a href='manage_users.php'> Manage Users </a></li>";
+
+                    // user management only for admin
+                    if ($_SESSION['loggedInUser'] == 'admin') {
+                        echo "<li><a href='manage_users.php'> Manage Users </a></li>";
+                    }
                 }
                 ?>
                 <li><a href="/privacy_policy.php">Privacy Policy</a></li>
