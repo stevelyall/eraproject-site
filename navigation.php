@@ -19,7 +19,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">ERA Project</a>
+
+            <a class="navbar-brand" href="index.php"> <img src="/images/eralogo_white_small_no_web.png"
+                                                           class="img-responsive" alt="ERA Project"> </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">

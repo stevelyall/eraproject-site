@@ -8,3 +8,7 @@ td {
 .navbar-default .navbar-text {
     color: #ffffff;
 }
+
+.navbar-brand {
+    padding: 7px 10px;
+}
