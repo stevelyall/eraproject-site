@@ -7,7 +7,6 @@ if (isset($_POST['submit'])) {
 
     $username = $_POST['inputUsername'];
     $password = $_POST['inputPassword'];
-    // TODO VALDATIONS
 
     // find user in db
     $found_user = findUser($username);

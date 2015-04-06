@@ -23,8 +23,6 @@ if (isset($_POST['submit'])) {
     $newusername = $_POST['inputUsername'];
     $newpassword = $_POST['inputPassword'];
 
-    // TODO make either field optional?
-
     modifyUser($user, $newusername, $newpassword);
     $msg = "User {$username} modified.";
 } else {

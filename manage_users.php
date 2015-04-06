@@ -57,7 +57,6 @@ ob_flush();
                 </tr>
 
                 <?php
-                // TODO no deleting one's own user
 
                 while ($row = mysqli_fetch_assoc($result)) { ?>
                 <!-- output each row-->
