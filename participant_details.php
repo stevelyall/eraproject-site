@@ -42,7 +42,6 @@ ob_flush();
         $connection = connectToDb();
 
         $id = $_GET['participant'];
-
         //perform query
         $query = "SELECT * FROM participant WHERE participant_id = '$id'";
         $result = mysqli_query($connection, $query);
