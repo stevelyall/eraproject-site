@@ -44,7 +44,7 @@
             $connection = connectToDb();
 
             //perform query
-             $query = "SELECT * FROM response ORDER BY participant_id";
+             $query = "SELECT * FROM response ORDER BY participant_id, response_num";
              $result = mysqli_query($connection, $query);
 
             if (!$result) {

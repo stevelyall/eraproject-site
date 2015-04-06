@@ -62,8 +62,8 @@ function runQuery($Query, $con) {
 }
 
 // run INSERT statements
-runQuery($insertResponseQuery, $connection);
 runQuery($insertParticipantQuery, $connection);
+runQuery($insertResponseQuery, $connection);
 
 
 mysql_close($connection);
