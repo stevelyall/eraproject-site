@@ -31,7 +31,7 @@ function connectToDb()
 function findAllUsers()
 {
     $connection = connectToDb();
-    $query = "SELECT * FROM users ORDER BY id";
+    $query = "SELECT * FROM user ORDER BY id";
     $users = mysqli_query($connection, $query);
     return $users;
 }
@@ -44,7 +44,7 @@ function findUser($username)
     $userid = mysqli_real_escape_string($connection, $username);
 
 
-    $query = "SELECT * FROM users WHERE username = '{$userid}' LIMIT 1";
+    $query = "SELECT * FROM user WHERE username = '{$userid}' LIMIT 1";
 
     $result = mysqli_query($connection, $query);
     if (!$result) {
@@ -65,7 +65,7 @@ function addUser($username, $password)
     $pw = mysqli_real_escape_string($connection, $password);
 
     // add new user
-    $query = "INSERT INTO users (username, password)
+    $query = "INSERT INTO user (username, password)
                 VALUES ('$usr', '$pw'); ";
     $result = mysqli_query($connection, $query);
 
@@ -80,7 +80,7 @@ function deleteUser($user)
     $connection = connectToDb();
     $username = mysqli_real_escape_string($connection, $user);
 
-    $query = "DELETE FROM users WHERE username = '$username';";
+    $query = "DELETE FROM user WHERE username = '$username';";
     $result = mysqli_query($connection, $query);
 
     if (!$result) {
@@ -104,7 +104,7 @@ function modifyUser($user, $newName, $newPass)
     var_dump($newPass);
     echo "</pre>";
 
-    $query = "UPDATE users SET username = '$newName', password = '$newPass' WHERE username = '$user';";
+    $query = "UPDATE user SET username = '$newName', password = '$newPass' WHERE username = '$user';";
     $result = mysqli_query($connection, $query);
 
     if (!$result) {

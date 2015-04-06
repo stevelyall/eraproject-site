@@ -58,6 +58,7 @@ ob_flush();
                     <th>Age</th>
                     <th>Gender</th>
                     <th>Ethnicity</th>
+                    <th># of Responses</th>
                 </tr>
 
                 <?php
@@ -68,6 +69,7 @@ ob_flush();
                     echo "<td>" . $row["age"] . "</td>";
                     echo "<td>" . $row["gender"] . "</td>";
                     echo "<td>" . $row["ethnicity"] . "</td>";
+                    echo "<td>" . $row["num_responses"] . "</td>";
                     echo "</tr>";
                 }
                 echo "</table>";

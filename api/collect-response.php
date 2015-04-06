@@ -51,6 +51,14 @@ $insertParticipantQuery = "INSERT IGNORE INTO participant (participant_id, age, 
 $insertResponseQuery = "INSERT INTO response (participant_id, response_num, start_time, end_time, location, q1_response, q2_response, q3_response, q4_response, q5_response, q6_response, q7_response, q8_response, q9_response, q10_response, q11_response, q12_response, q13_response, q14_response, q15_response, q16_response, q17_response, q18_response)
                         VALUES ('$participant_id', '$response_num', '$start_time', '$end_time', '$location', '$q1_response', '$q2_response', '$q3_response', '$q4_response', '$q5_response', '$q6_response', '$q7_response', '$q8_response', '$q9_response', '$q10_response', '$q11_response', '$q12_response', '$q13_response', '$q14_response', '$q15_response', '$q16_response', '$q17_response', '$q18_response');";
 
+// update the participant's response count in the database instead of using a trigger. Thanks, iPage.
+$responseCountQuery =
+"UPDATE participant SET num_responses =
+    ( SELECT COUNT(*)
+	   FROM response
+       WHERE participant_id = '$participant_id'
+       GROUP BY participant_id
+	) WHERE participant_id = '$participant_id';";
 
 
 function runQuery($Query, $con) {
@@ -64,6 +72,7 @@ function runQuery($Query, $con) {
 // run INSERT statements
 runQuery($insertParticipantQuery, $connection);
 runQuery($insertResponseQuery, $connection);
+runQuery($responseCountQuery, $connection);
 
 
 mysql_close($connection);

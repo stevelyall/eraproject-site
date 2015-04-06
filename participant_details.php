@@ -92,6 +92,16 @@ ob_flush();
 
             </p>
 
+            <p>
+                Number of responses:
+                <strong>
+                    <?php
+                    echo $row['num_responses'];
+                    ?>
+                </strong>
+
+            </p>
+
             <?php
             // release returned data
             mysqli_free_result($result);
