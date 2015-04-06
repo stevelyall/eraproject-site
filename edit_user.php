@@ -10,7 +10,11 @@ if (!isset($_SESSION['loggedInUser'])) {
 
 // user to edit
 $user = $_GET['user'];
-var_dump($user);
+
+// no access to default user
+if ($user == 'admin') {
+    redirectTo("index.php");
+}
 
 if (isset($_POST['submit'])) {
     // form was submitted

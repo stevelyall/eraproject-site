@@ -9,10 +9,14 @@ if (!isset($_SESSION['loggedInUser'])) {
 }
 
 //delete user
-$userToDelete = $_GET['user'];
-echo "<pre> User $userToDelete </pre>" . var_dump($userToDelete);
+$user= $_GET['user'];
 
-deleteUser($userToDelete);
+// no access to default user
+if ($user == 'admin') {
+    redirectTo("index.php");
+}
+
+deleteUser($user);
 redirectTo("manage_users.php");
 ob_flush();
 ?>

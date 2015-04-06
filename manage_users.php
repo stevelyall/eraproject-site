@@ -51,17 +51,24 @@ ob_flush();
             <table class='table-striped table-hover'>
                 <tr>
                     <th>Username</th>
-                    <th>Password</th>
                     <th>Options</th>
                 </tr>
 
                 <?php
+                // TODO no deleting one's own user
+
                 while ($row = mysqli_fetch_assoc($result)) { ?>
                 <!-- output each row-->
                 <tr>
                     <td><?php echo htmlentities($row['username']) ?></td>
-                    <td><?php echo htmlentities($row["hashed_password"]) ?></td>
                     <td>
+                        <?php
+                            // no editing default user
+                            if ($row['username'] == 'admin') {
+                                continue;
+                            }
+                        ?>
+
                         <a href='delete_user.php?user=<?php echo urlencode($row["username"]) ?>'> <span
                                 class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>
                         <a href='edit_user.php?user=<?php echo urlencode($row["username"]) ?>'> <span
