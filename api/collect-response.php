@@ -72,7 +72,7 @@ $responseCountQuery =
 
 
 function runQuery($Query, $con) {
-    if (!mysql_query($Query, $con)) {
+    if (!mysqli_query($Query, $con)) {
         die('Error: ' . mysql_error());
     } else {
         echo "<br> insert success" . mysql_info();
