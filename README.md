@@ -1,4 +1,4 @@
-# eraproject.ca
+# eraproject.ca Readme
 
 The eraproject.ca provides a public area accessible to visitors, as well as a private area for researchers to access data from the database. It was built with Bootstrap (http://getbootstrap.com) and PHP.
 
