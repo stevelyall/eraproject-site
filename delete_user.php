@@ -1,4 +1,7 @@
 <?php
+/**
+ * Deletes the user id passed as a URL parameter from the database.
+ */
 ob_start();
 require_once("functions.php");
 
