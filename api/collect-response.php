@@ -21,6 +21,8 @@ var_dump($json);
 echo '<br>';
 $obj = json_decode($json);
 
+// get and escape strings
+
 // participant data
 $participant_id = mysql_real_escape_string($obj->{participantId});
 $age = mysql_real_escape_string($obj->{age});
@@ -33,7 +35,6 @@ $start_time = mysql_real_escape_string($obj->{startTime});
 $end_time = mysql_real_escape_string($obj->{endTime});
 $start_time = mysql_real_escape_string($obj->{startTime});
 $location = mysql_real_escape_string($obj->{location});
-
 $q1_response = mysql_real_escape_string($obj->{q1response});
 $q2_response = mysql_real_escape_string($obj->{q2response});
 $q3_response = mysql_real_escape_string($obj->{q3response});
@@ -85,6 +86,6 @@ runQuery($insertResponseQuery, $connection);
 runQuery($responseCountQuery, $connection);
 
 
-mysql_close($connection);
+mysqli_close($connection);
 
 ?>
