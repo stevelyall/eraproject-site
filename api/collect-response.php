@@ -1,11 +1,21 @@
 <?php
-$connection = mysql_connect('eraprojectca.ipagemysql.com', 'ernie', 'Emotivate_88');
-if (!$connection) {
-    die('Could not connect: ' . mysql_error());
-}
-echo 'Connected successfully<br>';
 
-mysql_select_db(eraprojectdb);
+/**
+ * Handles participant data sent via POST from mobile application and inserts it into the database.
+ */
+
+
+// connect to the database
+$host = "eraprojectca.ipagemysql.com";
+$user = "ernie";
+$pass = "Emotivate_88";
+$dbname = "eraprojectdb";
+$connection = mysqli_connect($host, $user, $pass, $dbname);
+if (mysqli_connect_errno()) {
+    die('Could not connect: ' . mysqli_connect_error() . ' error number: ' . mysqli_connect_errno());
+}
+
+// get JSON object
 $json = file_get_contents('php://input');
 var_dump($json);
 echo '<br>';
