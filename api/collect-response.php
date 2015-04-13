@@ -1,9 +1,7 @@
 <?php
-
 /**
  * Handles participant data sent via POST from mobile application and inserts it into the database.
  */
-
 
 // connect to the database
 $host = "eraprojectca.ipagemysql.com";
@@ -71,6 +69,10 @@ $responseCountQuery =
        GROUP BY participant_id
 	) WHERE participant_id = '$participant_id';";
 
+// run INSERT statements
+runQuery($insertParticipantQuery, $connection);
+runQuery($insertResponseQuery, $connection);
+runQuery($responseCountQuery, $connection);
 
 function runQuery($Query, $con) {
     if (!mysqli_query($Query, $con)) {
@@ -79,12 +81,6 @@ function runQuery($Query, $con) {
         echo "<br> insert success" . mysql_info();
     }
 }
-
-// run INSERT statements
-runQuery($insertParticipantQuery, $connection);
-runQuery($insertResponseQuery, $connection);
-runQuery($responseCountQuery, $connection);
-
 
 mysqli_close($connection);
 
