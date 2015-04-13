@@ -39,6 +39,7 @@
     <content>
         <div class="container-fluid">
             <h2>Responses</h2>
+            <a href="download_responses.php"><span class="glyphicon glyphicon-download-alt" aria-hidden="true">&nbsp;Download</span></a>
             <br>
             <?php
             $connection = connectToDb();

@@ -39,6 +39,7 @@ ob_flush();
     <content>
         <div class="container-fluid">
             <h2>Participants</h2>
+            <a href="download_participants.php"><span class="glyphicon glyphicon-download-alt" aria-hidden="true">&nbsp;Download</span></a>
             <br>
             <?php
             $connection = connectToDb();

@@ -9,7 +9,7 @@ if (!isset($_SESSION['loggedInUser'])) {
 }
 
 header('Content-type: text/csv');
-header('Content-disposition: attachment;filename=responses.csv');
+header('Content-disposition: attachment;filename=participants.csv');
 
 // open file using stdout
 $out = fopen("php://output", "w");
@@ -18,7 +18,7 @@ $out = fopen("php://output", "w");
 $connection = connectToDb();
 
 //perform query
-$result = mysqli_query($connection, "SELECT * FROM response ORDER BY participant_id, response_num");
+$result = mysqli_query($connection, "SELECT * FROM participant ORDER BY participant_num");
 if (!$result) {
     die("db query failed");
 }
