@@ -14,23 +14,23 @@ if (!isset($_SESSION['loggedInUser'])) {
 }
 
 // user to edit
-$user = $_GET['user'];
+$currentUsername = $_GET['user'];
 // no access to default user
-if ($user == 'admin') {
+if ($currentUsername == 'admin') {
     redirectTo("index.php");
 }
 
 if (isset($_POST['submit'])) {
     // form was submitted
-    $user = $_POST['user'];
+    $currentUsername = $_POST['user'];
     $newusername = $_POST['inputUsername'];
     $newpassword = $_POST['inputPassword'];
-    var_dump($user);
-    modifyUser($user, $newusername, $newpassword);
+    var_dump($currentUsername);
+    modifyUser($currentUsername, $newusername, $newpassword);
     $msg = "User {$newusername} modified.";
 } else {
     // form was not submitted (GET request)
-    $msg = "Edit User " . $user;
+    $msg = "Edit User " . $currentUsername;
 }
 ob_flush();
 ?>
@@ -40,7 +40,7 @@ ob_flush();
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ERA | Edit User <?php echo $user ?></title>
+    <title>ERA | Edit User <?php echo $currentUsername ?></title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -65,7 +65,7 @@ ob_flush();
         <form class="form-signin" action="edit_user.php" method="post">
             <h2 class="form-signin-heading"> <?php echo $msg; ?> </h2>
             <!-- also post current user name for new page to access -->
-            <input type="hidden" name="user" value="<?php echo $user; ?>">
+            <input type="hidden" name="user" value="<?php echo $currentUsername; ?>">
             <label for="inputUsername" class="sr-only">Username</label>
             <input type="text" name="inputUsername" class="form-control" placeholder="New Username" required autofocus>
             <label for="inputPassword" class="sr-only">Password</label>
