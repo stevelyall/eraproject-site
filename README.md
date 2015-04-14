@@ -24,5 +24,12 @@ The participants Page shows all of the participants who have submitted at least 
 
 ###Manage Users (Admin only)
 The user management view, only visible for the user admin, allows the administrator to add, delete or modify additional subordinate users permitted to access the responses and participants pages.
-####
 
+####Add User
+From the add user page, the administrator can add users one after the other by providing a username and password for each. To save a new user, make sure a username and password have been entered, then choose the "Add User" button. Choosing the "Done Adding Users" button returns to the user management page. 
+
+####Delete User
+From the manage user screen, the administrator can remove users by clicking on the delete icon next to a user's name. 
+
+####Edit User
+From the manage user screen, the administrator can click the edit icon next to a user to open a page which allows her/him to change a user's name or password. To change a user's username and password, input their new credentials in the appropriate fields, then choose "Submit Changes". To return to the user management screen, click the "Done Editing User" button.
