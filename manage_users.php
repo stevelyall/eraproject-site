@@ -1,4 +1,7 @@
 <?php
+/**
+ * User management page
+ */
 ob_start();
 require_once("functions.php");
 

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Edits a user's name and password.
+ */
 ob_start();
 require_once("functions.php");
 

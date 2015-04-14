@@ -17,10 +17,7 @@ if (!isset($_SESSION['loggedInUser'])) {
 $user = $_GET['user'];
 echo $user;
 if ($user != 'admin') {
-    echo $user . "delete";
     deleteUser($user);
-} else {
-    echo "can't delete admin";
 }
 redirectTo("manage_users.php");
 
