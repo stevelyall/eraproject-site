@@ -13,15 +13,16 @@ if (!isset($_SESSION['loggedInUser'])) {
     redirectTo("view_responses.php");
 }
 
-//delete user
-$user= $_GET['user'];
-
-// no access to default user
-if ($user == 'admin') {
-    redirectTo("index.php");
+//delete user, unless it is admin
+$user = $_GET['user'];
+echo $user;
+if ($user != 'admin') {
+    echo $user . "delete";
+    deleteUser($user);
+} else {
+    echo "can't delete admin";
 }
-
-deleteUser($user);
 redirectTo("manage_users.php");
+
 ob_flush();
 ?>
