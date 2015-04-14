@@ -10,16 +10,16 @@ function redirectTo($page)
 function connectToDb()
 {
 //    production
-//    $host = "eraprojectca.ipagemysql.com";
-//    $user = "ernie";
-//    $pass = "Emotivate_88";
-//    $dbname = "eraprojectdb";
+    $host = "eraprojectca.ipagemysql.com";
+    $user = "ernie";
+    $pass = "Emotivate_88";
+    $dbname = "eraprojectdb";
 
     // dev
-    $host = "localhost";
-    $user = "root";
-    $pass = "mysql";
-    $dbname = "eradevdb";
+//    $host = "localhost";
+//    $user = "root";
+//    $pass = "mysql";
+//    $dbname = "eradevdb";
 
     // connect to the database
     $connection = mysqli_connect($host, $user, $pass, $dbname);
@@ -93,17 +93,10 @@ function deleteUser($user)
 // replaces a user's information in the database with the new information provided
 function modifyUser($user, $newName, $newPass)
 {
-    var_dump($user);
     $connection = connectToDb();
     $user = mysqli_real_escape_string($connection, $user);
     $newName = mysqli_real_escape_string($connection, $newName);
     $newPass = mysqli_real_escape_string($connection, $newPass);
-
-    echo "<pre>";
-    var_dump($user);
-    var_dump($newName);
-    var_dump($newPass);
-    echo "</pre>";
 
     $query = "UPDATE user SET username = '$newName', password = '$newPass' WHERE username = '$user';";
     $result = mysqli_query($connection, $query);
