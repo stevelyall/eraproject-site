@@ -25,7 +25,6 @@ if (isset($_POST['submit'])) {
     $currentUsername = $_POST['user'];
     $newusername = $_POST['inputUsername'];
     $newpassword = $_POST['inputPassword'];
-    var_dump($currentUsername);
     modifyUser($currentUsername, $newusername, $newpassword);
     $msg = "User {$newusername} modified.";
 } else {
