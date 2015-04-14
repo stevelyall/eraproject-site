@@ -98,13 +98,12 @@ function modifyUser($user, $newName, $newPass)
     $newName = mysqli_real_escape_string($connection, $newName);
     $newPass = mysqli_real_escape_string($connection, $newPass);
 
-    $query = "UPDATE user SET username = '$newName', password = '$newPass' WHERE username = '$user';";
+    $query = "UPDATE user SET username = '$newName', password = '$newPass' WHERE username = '$user' LIMIT 1;";
     $result = mysqli_query($connection, $query);
 
     if (!$result) {
         die("Updating user failed" . mysqli_error($connection));
     }
-
     mysqli_close($connection);
 }
 

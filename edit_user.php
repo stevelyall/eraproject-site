@@ -15,7 +15,6 @@ if (!isset($_SESSION['loggedInUser'])) {
 
 // user to edit
 $user = $_GET['user'];
-
 // no access to default user
 if ($user == 'admin') {
     redirectTo("index.php");
@@ -23,11 +22,12 @@ if ($user == 'admin') {
 
 if (isset($_POST['submit'])) {
     // form was submitted
+    $user = $_POST['user'];
     $newusername = $_POST['inputUsername'];
     $newpassword = $_POST['inputPassword'];
-
+    var_dump($user);
     modifyUser($user, $newusername, $newpassword);
-    $msg = "User {$username} modified.";
+    $msg = "User {$newusername} modified.";
 } else {
     // form was not submitted (GET request)
     $msg = "Edit User " . $user;
@@ -64,6 +64,8 @@ ob_flush();
         <!-- add user form -->
         <form class="form-signin" action="edit_user.php" method="post">
             <h2 class="form-signin-heading"> <?php echo $msg; ?> </h2>
+            <!-- also post current user name for new page to access -->
+            <input type="hidden" name="user" value="<?php echo $user; ?>">
             <label for="inputUsername" class="sr-only">Username</label>
             <input type="text" name="inputUsername" class="form-control" placeholder="New Username" required autofocus>
             <label for="inputPassword" class="sr-only">Password</label>
