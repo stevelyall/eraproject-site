@@ -1,4 +1,5 @@
-# eraproject.ca Readme
+# eraproject.ca readme
+Git repository: https://github.com/stevelyall/eraproject-site
 
 The eraproject.ca provides a public area accessible to visitors, as well as a private area for researchers to access data from the database. It was built with Bootstrap (http://getbootstrap.com) and PHP.
 
