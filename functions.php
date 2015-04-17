@@ -10,16 +10,16 @@ function redirectTo($page)
 function connectToDb()
 {
 //    production
-    $host = "eraprojectca.ipagemysql.com";
-    $user = "ernie";
-    $pass = "Emotivate_88";
-    $dbname = "eraprojectdb";
+//    $host = "eraprojectca.ipagemysql.com";
+//    $user = "ernie";
+//    $pass = "Emotivate_88";
+//    $dbname = "eraprojectdb";
 
     // dev
-//    $host = "localhost";
-//    $user = "root";
-//    $pass = "mysql";
-//    $dbname = "eradevdb";
+    $host = "localhost";
+    $user = "root";
+    $pass = "mysql";
+    $dbname = "eradevdb";
 
     // connect to the database
     $connection = mysqli_connect($host, $user, $pass, $dbname);

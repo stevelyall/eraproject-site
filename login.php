@@ -6,14 +6,13 @@ require("functions.php");
 if (isset($_POST['submit'])) {
 
     $username = $_POST['inputUsername'];
-    $password = $_POST['inputPassword'];
+    $passwordEntered = $_POST['inputPassword'];
 
     // find user in db
     $found_user = findUser($username);
-    //echo "<pre> $username <br> $found_user <br> var_dump($found_user)</pre>";
     if ($found_user != null) {
         // password matches
-        $logged_in = ($found_user['password'] == $password) ? true : false;
+        $logged_in = (password_verify($passwordEntered, $found_user['password'])) ? true : false;
         if ($logged_in) {
             session_start();
             $_SESSION['loggedInUser'] = $found_user['username'];
