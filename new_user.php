@@ -13,8 +13,7 @@ if (!isset($_SESSION['loggedInUser'])) {
 if (isset($_POST['submit'])) {
     // form was submitted
     $username = $_POST['inputUsername'];
-    $password = $_POST['inputPassword'];
-
+    $password = password_hash($_POST['inputPassword'], PASSWORD_BCRYPT);
 
     // check for duplicate user
     // user with that name exists
